@@ -1,9 +1,10 @@
 //Форма отправки 2.0 //
 $(function() {
   $('.button-send').click(function() {
-    var message = $('.message').html;
-    $('.message-input').attr(value, message);
+    var message = $('.message').html();
+    $('.message-input').val(message);
   });
+
   $("[name=send]").click(function () {
     $(":input.error").removeClass('error');
     $(".allert").remove();
@@ -47,14 +48,9 @@ $(function() {
             success: function() {
               setTimeout(function(){ $('form').trigger("reset");
                 $("[name=send]").removeAttr("disabled"); }, 1000);
-                             //Настройки модального окна после удачной отправки
-                             $('.modal').hide();
-                             $('.modal-backdrop').hide();
-                             $('body').removeClass('modal-open').css('padding', 'inherit');
-                             $('#thank').modal('show');
                            },
                            error: function(xhr, str) {
-                            alert('Возникла ошибка: ' + xhr.responseCode);
+                            alert('Error' + xhr.responseCode);
                           }
                         });
         } else {
@@ -70,15 +66,10 @@ $(function() {
               statusCode: {0:function() {
                 setTimeout(function(){ $('form').trigger("reset");
                   $("[name=send]").removeAttr("disabled"); }, 1000);
-                                    // Настройки модального окна после удачной отправки
-                                    $('.modal').hide();
-                                    $('.modal-backdrop').hide();
-                                    $('body').removeClass('modal-open').css('padding', 'inherit');
-                                    $('#thank').modal('show');
                                   }}
                                 }),
             error:  function(xhr, str) {
-              alert('Возникла ошибка: ' + xhr.responseCode);
+              alert('Error' + xhr.responseCode);
             }
           });
         }
