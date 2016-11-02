@@ -177,6 +177,9 @@ $(document).ready(function(){
     $('body').removeClass('open-works');
   });
 
-
+  $('.nav-link').click(function() {
+    $('.nav-link').removeClass('current-menu');
+    $(this).addClass('current-menu');
+  });
 
 });
