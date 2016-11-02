@@ -1,5 +1,9 @@
 //Форма отправки 2.0 //
 $(function() {
+  $('.button-send').click(function() {
+    var message = $('.message').html;
+    $('.message-input').attr(value, message);
+  });
   $("[name=send]").click(function () {
     $(":input.error").removeClass('error');
     $(".allert").remove();
@@ -14,7 +18,7 @@ $(function() {
     $(ref).each(function() {
       if ($(this).val() == '') {
         var errorfield = $(this);
-        $(this).addClass('error').parent('.field').append('<div class="allert"><span>Заполните это поле</span></div>');
+        $(this).addClass('error').parent('.field').append('<div class="allert"><span>Required field</span></div>');
         error = 1;
         $(":input.error:first").focus();
         return;
@@ -23,16 +27,7 @@ $(function() {
         if ($(this).attr("type") == 'email') {
           if(!pattern.test($(this).val())) {
             $("[name=email]").val('');
-            $(this).addClass('error').parent('.field').append('<div class="allert"><span>Укажите коректный e-mail</span></div>');
-            error = 1;
-            $(":input.error:first").focus();
-          }
-        }
-        var patterntel = /^([0-9_+\.-]{10,18})/i;
-        if ( $(this).attr("type") == 'tel') {
-          if(!patterntel.test($(this).val())) {
-            $("[name=phone]").val('');
-            $(this).addClass('error').parent('.field').append('<div class="allert"><span>Укажите коректный номер телефона</span></div>');
+            $(this).addClass('error').parent('.field').append('<div class="allert"><span>Input correct e-mail</span></div>');
             error = 1;
             $(":input.error:first").focus();
           }
@@ -180,6 +175,14 @@ $(document).ready(function(){
   $('.nav-link').click(function() {
     $('.nav-link').removeClass('current-menu');
     $(this).addClass('current-menu');
+  });
+
+  $('input, textarea').focus(function() {
+    $(this).parent().addClass('active-input');
+  });
+
+  $('input, textarea').focusout(function() {
+    $(this).parent().removeClass('active-input');
   });
 
 });
